@@ -41,8 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="NCategoria.cs" />
     <Compile Include="NCliente.cs" />
+=======
+    <Compile Include="Class1.cs" />
+>>>>>>> 1c69ce326e92488e44c166c8531846590332b1f4
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
