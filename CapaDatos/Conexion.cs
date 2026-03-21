@@ -13,5 +13,6 @@ namespace CapaDatos
         public static string cadena = "Data Source = DESKTOP-RAN058S\\SQLEXPRESS;" + 
             "Initial Catalog = db_SistemaVenta;" + 
             "Integrated Security = true; TrustServerCertificate = True;";
+
     }
 }
