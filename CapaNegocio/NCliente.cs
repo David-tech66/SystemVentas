@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 // LLAMA A UNA CLASE
-
 using CapaDatos;
 
 namespace CapaNegocio

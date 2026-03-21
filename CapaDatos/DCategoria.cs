@@ -11,7 +11,6 @@ namespace CapaDatos
     public class DCategoria
     {
         // PROPIEDADES O ATRIBUTOS
-
         private int _id_categoria;
         private string _nombre_catg;
         private string _descripcion;

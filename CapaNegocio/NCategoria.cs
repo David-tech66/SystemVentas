@@ -30,7 +30,6 @@ namespace CapaNegocio
                 string estado, DateTime fecha)
         {
             DCategoria Obj = new DCategoria();
-
             Obj.Id_categoria = id_categoria;
             Obj.Nombre_catg = nombre_catg;
             Obj.Descripcion = descripcion;

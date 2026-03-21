@@ -11,7 +11,6 @@ namespace CapaDatos
     public class DCliente
     {
         // ATRIBUTOS O CARACTERISTICAS
-
         private int _id_cliente;
         private string _nombre;
         private string _apellido;
