@@ -1,112 +1,153 @@
 CREATE DATABASE db_SistemaVenta
 USE db_SistemaVenta
 
+
 CREATE TABLE tblCliente
 (
-id_cliente INT PRIMARY KEY IDENTITY(1, 1),
-nombre nvarchar(200) not null,
-apellido nvarchar(300) not null,
-correo nvarchar(100) not null,
-dni char(8) not null,
-telefono char(9) not null
+id_cliente	INT PRIMARY KEY IDENTITY(1, 1),
+nombre		NVARCHAR(200) NOT NULL,
+apellido	NVARCHAR(300) NOT NULL,
+correo		NVARCHAR(100) NOT NULL,
+dni			CHAR(8) NOT NULL,
+telefono	CHAR(9) NOT NULL
 )
+SELECT * FROM tblCliente
+
 
 CREATE TABLE tblVendedor
 (
-id_vendedor INT PRIMARY KEY IDENTITY(1, 1),
-nombre_ven nvarchar(200) not null,
-apellido_ven nvarchar(300) not null,
-dni_ven char(8) not null,
-telf_ven char(9) not null
+id_vendedor		   INT PRIMARY KEY IDENTITY(1, 1),
+nombre_vendedor	   NVARCHAR(200) NOT NULL,
+primer_apellido	   NVARCHAR(300) NOT NULL,
+segundo_apellido   NVARCHAR(300) NOT NULL,
+correo_vendedor    NVARCHAR(200) NOT NULL,
+dni_vendedor  	   CHAR(8) NOT NULL,
+telf_vendedor      CHAR(9) NOT NULL,
+sexo               CHAR(9) NOT NULL,
+fecha_contrato     DATETIME NOT NULL,
+direccion_vendedor NVARCHAR(300) NOT NULL,
+salario			   DECIMAL(10, 2) NOT NULL,
+estado_vendedor	   VARCHAR(10) NOT NULL,
+usuario			   NVARCHAR(200) NOT NULL,
+contrasena         NVARCHAR(200) NOT NULL,
+acceso             NVARCHAR(100) NOT NULL
 )
 
 CREATE TABLE tblProveedor
 (
-id_proveedor INT PRIMARY KEY IDENTITY(1, 1),
-nombre_prov nvarchar(200) not null,
-dire_prov nvarchar(300) not null,
-telf_prov char(9) not null,
-ruc nvarchar(11) not null
+id_proveedor	INT PRIMARY KEY IDENTITY(1, 1),
+nombre_prov		NVARCHAR(200) NOT NULL,
+dire_prov		NVARCHAR(300) NOT NULL,
+correo_prov		NVARCHAR(200) NOT NULL,
+telf_prov		CHAR(9) NOT NULL,
+ruc				NVARCHAR(11) NOT NULL,
+estado_prov		VARCHAR(10) NOT NULL
 )
+SELECT * FROM tblProveedor
+
 
 CREATE TABLE tblCategoria
 (
-id_categoria INT PRIMARY KEY IDENTITY(1, 1),
-nombre_catg nvarchar(100) not null
+id_categoria	INT PRIMARY KEY IDENTITY(1, 1),
+nombre_catg		NVARCHAR(100) NOT NULL,
+descripcion		NVARCHAR(200) NOT NULL,
+estado			NVARCHAR(20) NOT NULL,
+fecha			DATETIME NOT NULL
 )
-/* AGREGAR ATRIBUTOS FALTANTES A UNA TABLA EXISTENTE:
-ALTER TABLE tblCategoria
-ADD descripcion NVARCHAR(200) NOT NULL, estado NVARCHAR(20) NOT NULL, fecha DATETIME NOT NULL
-*/
+SELECT * FROM tblCategoria
+
 
 CREATE TABLE tblMarca
 (
-id_marca INT PRIMARY KEY IDENTITY(1, 1),
-nombre_marc nvarchar(100) not null
+id_marca			INT PRIMARY KEY IDENTITY(1, 1),
+nombre_marc			NVARCHAR(100) NOT NULL,
+descripcion_marc	NVARCHAR(300) NOT NULL,
+estado_marc			VARCHAR(10) NOT NULL,
+fecha_registro		DATETIME NOT NULL
 )
+SELECT * FROM tblMarca
+
 
 -- INICIO DE TABLAS CON LLAVES FORANEAS --
 
-CREATE TABLE tblVenta
-(
-id_venta INT PRIMARY KEY IDENTITY(1, 1),
-total int not null,
-fecha datetime not null,
-id_cliente int,
-id_vendedor int,
-constraint fk_fcliente foreign key(id_cliente) references tblCliente(id_cliente),
-constraint fk_fvendedor foreign key(id_vendedor) references tblVendedor(id_vendedor)
-)
-
-CREATE TABLE tblCompra
-(
-id_compra INT PRIMARY KEY IDENTITY(1, 1),
-total_compra int not null,
-fecha_compra datetime not null,
-id_proveedor int,
-constraint fk_fproveedor foreign key(id_proveedor) references tblProveedor(id_proveedor)
-)
-
 CREATE TABLE tblProducto
 (
-id_producto INT PRIMARY KEY IDENTITY(1, 1),
-nombre_prod nvarchar(200) not null,
-precio decimal(18,0) not null,
-stock int not null,
-id_categoria int,
-id_marca int,
+id_producto		INT PRIMARY KEY IDENTITY(1, 1),
+id_categoria	INT,
+id_marca		INT,
+nombre_prod		NVARCHAR(200) NOT NULL,
+precio			DECIMAL(18,2) NOT NULL,
+stock			INT NOT NULL,
+garantia		INT NOT NULL,
+fech_ingreso	DATETIME NOT NULL
 constraint fk_fcategoria foreign key(id_categoria) references tblCategoria(id_categoria),
 constraint fk_fmarca foreign key(id_marca) references tblMarca(id_marca)
 )
 
-CREATE TABLE tblDetalleCompra
+CREATE TABLE tblVenta
 (
-id_det_compra INT PRIMARY KEY IDENTITY(1, 1),
-cantidad int not null,
-costo_unitario decimal(18,0) not null,
-id_compra int,
-id_producto int,
-constraint fk_fcompra foreign key(id_compra) references tblCompra(id_compra),
-constraint fk_fproducto foreign key(id_producto) references tblProducto(id_producto)
+id_venta		INT PRIMARY KEY IDENTITY(1, 1),
+id_cliente		INT,
+id_vendedor		INT,
+fecha			DATETIME NOT NULL,
+
+constraint fk_fcliente foreign key(id_cliente) references tblCliente(id_cliente),
+constraint fk_fvendedor foreign key(id_vendedor) references tblVendedor(id_vendedor)
 )
 
+-- TABLA INTERMEDIA --
 CREATE TABLE tblDetalleVenta
 (
-id_det_venta INT PRIMARY KEY IDENTITY(1, 1),
-fecha_det datetime not null,
-cantidad_uni int not null,
-id_venta int,
-id_producto1 int,
+id_det_venta		INT PRIMARY KEY IDENTITY(1, 1),
+id_venta			INT,
+id_producto1		INT,
+fecha_detalle		DATETIME NOT NULL,
+cantidad_unitaria	INT NOT NULL,
+subtotal_venta		DECIMAL(18,2) NOT NULL,
+vuelto				DECIMAL(18,0) NOT NULL
 constraint fk_fventa foreign key(id_venta) references tblVenta(id_venta),
 constraint fk_fproducto1 foreign key(id_producto1) references tblProducto(id_producto)
 )
 
+
+CREATE TABLE tblCompra
+(
+id_compra		INT PRIMARY KEY IDENTITY(1, 1),
+id_proveedor	INT,
+total_compra	DECIMAL(18,2) NOT NULL,
+fecha_compra	DATETIME NOT NULL,
+constraint fk_fproveedor foreign key(id_proveedor) references tblProveedor(id_proveedor)
+)
+
+-- TABLA INTERMEDIA --
+CREATE TABLE tblDetalleCompra
+(
+id_det_compra	INT PRIMARY KEY IDENTITY(1, 1),
+id_compra		INT,
+id_producto		INT,
+cantidad_uni	INT NOT NULL,
+costo_unitario	DECIMAL(18,2) NOT NULL,
+subtotal_det	DECIMAL(18,2) NOT NULL
+constraint fk_fcompra foreign key(id_compra) references tblCompra(id_compra),
+constraint fk_fproducto foreign key(id_producto) references tblProducto(id_producto)
+)
+
 CREATE TABLE tblPago
 (
-id_pago INT PRIMARY KEY IDENTITY(1, 1),
-fecha_pago datetime not null,
-monto_pago varchar(20) not null,
-monto decimal(18,0) not null,
-id_venta1 int,
+id_pago		INT PRIMARY KEY IDENTITY(1, 1),
+id_venta1	INT,
+fecha_pago	DATETIME NOT NULL,
+monto_pago	VARCHAR(50) NOT NULL,
+monto		DECIMAL(18,2) NOT NULL,
+vuelto_pago DECIMAL(18,2)
 constraint fk_fventa1 foreign key(id_venta1) references tblVenta(id_venta)
 )
+
+/*
+CRETE PROC splogin
+@usuario varchar(20),
+@contasena varchar(255)
+as select id_empleado, num_doc, ap_materno, ap_paterno, acceso
+from tblEmpleado
+where usuario = @usuario and contrasena = @contrasena
+*/

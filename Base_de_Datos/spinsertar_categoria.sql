@@ -1,3 +1,4 @@
+-- PROCEDIMIENTO PARA INSERTAR LOS DATOS --
 CREATE PROC spinsertar_categoria
 @nombre_catg	NVARCHAR(100),
 @descripcion	NVARCHAR(200),
@@ -13,7 +14,7 @@ UPDATE tblCategoria SET descripcion = 'Teclado HP'
 WHERE id_categoria=2
 */
 
-go
+GO
 -- PROCEDIMIENTO PARA ACTUALIZAR CATEGORIA -- 
 CREATE PROC speditar_categoria
 @id_categoria	INT,
@@ -22,5 +23,8 @@ CREATE PROC speditar_categoria
 @estado			NVARCHAR(20),
 @fecha			DATETIME
 AS UPDATE tblCategoria 
-SET nombre_catg = @nombre_catg, descripcion = @descripcion, estado = @estado, fecha = @fecha
+SET nombre_catg = @nombre_catg, 
+	descripcion = @descripcion,
+	estado		= @estado,
+	fecha		= @fecha
 WHERE id_categoria = @id_categoria

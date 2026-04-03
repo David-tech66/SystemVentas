@@ -168,11 +168,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion.cs" />
-<<<<<<< HEAD
     <Compile Include="DCategoria.cs" />
-=======
->>>>>>> 1c69ce326e92488e44c166c8531846590332b1f4
     <Compile Include="DCliente.cs" />
+    <Compile Include="DDetalleVenta.cs" />
+    <Compile Include="DMarca.cs" />
+    <Compile Include="DProducto.cs" />
+    <Compile Include="DProveedor.cs" />
+    <Compile Include="DVendedor.cs" />
+    <Compile Include="DVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

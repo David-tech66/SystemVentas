@@ -8,51 +8,56 @@ using Microsoft.Data.SqlClient;
 
 namespace CapaDatos
 {
-    public class DCategoria
+    public class DProveedor
     {
         // PROPIEDADES O ATRIBUTOS
-        private int _id_categoria;
-        private string _nombre_catg;
-        private string _descripcion;
-        private string _estado;
-        private DateTime _fecha;
+        private int _id_proveedor;
+        private string _nombre_prov;
+        private string _dire_prov;
+        private string _correo_prov;
+        private string _telf_prov;
+        private string _ruc;
+        private string _estado_prov;
         private string _textobuscar;
 
         // Get (Obtener) y Set (Enviar o insertar): Encapsulado
-        public int Id_categoria { get => _id_categoria; set => _id_categoria = value; }
-        public string Nombre_catg { get => _nombre_catg; set => _nombre_catg = value; }
-        public string Descripcion { get => _descripcion; set => _descripcion = value; }
-        public string Estado { get => _estado; set => _estado = value; }
-        public DateTime Fecha { get => _fecha; set => _fecha = value; }
+        public int Id_proveedor { get => _id_proveedor; set => _id_proveedor = value; }
+        public string Nombre_prov { get => _nombre_prov; set => _nombre_prov = value; }
+        public string Dire_prov { get => _dire_prov; set => _dire_prov = value; }
+        public string Correo_prov { get => _correo_prov; set => _correo_prov = value; }
+        public string Telf_prov { get => _telf_prov; set => _telf_prov = value; }
+        public string Ruc { get => _ruc; set => _ruc = value; }
+        public string Estado_prov { get => _estado_prov; set => _estado_prov = value; }
         public string Textobuscar { get => _textobuscar; set => _textobuscar = value; }
 
         // CONSTRUCTOR VACIO
-        public DCategoria()
+        public DProveedor() 
         {
 
         }
 
         // CONSTRUCTOR CON PARAMETROS
-        public DCategoria(int id_categoria, string nombre_catg, string descripcion, string estado, DateTime fecha, string textobuscar)
+        public DProveedor(int id_proveedor, string nombre_prov, string dire_prov, string correo_prov, string telf_prov, string ruc, string estado_prov, string textobuscar)
         {
             // INICIALIZAR LAS PROPIEDADES DE LA CLASE
-            Id_categoria = id_categoria;
-            Nombre_catg  = nombre_catg;
-            Descripcion  = descripcion;
-            Estado       = estado;
-            Fecha        = fecha;
+            Id_proveedor = id_proveedor;
+            Nombre_prov  = nombre_prov;
+            Dire_prov    = dire_prov;
+            Correo_prov  = correo_prov;
+            Telf_prov    = telf_prov;
+            Estado_prov  = estado_prov;
             Textobuscar  = textobuscar;
         }
 
         // 1. METODO PARA MOSTRAR DATOS DE UNA TABLA EN UN DATAGRIDVIEW
-        public DataTable MostrarCategoria()
+        public DataTable MostrarProveedor()
         {
             DataTable tabla = new DataTable();
             SqlConnection SqlCon = new SqlConnection(Conexion.cadena);
             try
             {
                 SqlCon.Open();
-                SqlCommand SqlCmd = new SqlCommand("spmostrar_categoria", SqlCon);
+                SqlCommand SqlCmd = new SqlCommand("spmostrar_proveedor", SqlCon);
                 // NOMBRE DE STOREPROCEDURE Y LA CADENA CONEXION
                 SqlCmd.CommandType = CommandType.StoredProcedure;
 
@@ -71,20 +76,22 @@ namespace CapaDatos
         }
 
         // 2. METODO PARA INSERTAR
-        public string InsertarCategoria(DCategoria Categoria)
+        public string InsertarProveedor(DProveedor Proveedor)
         {
             string respuesta = "";
             SqlConnection SqlCon = new SqlConnection(Conexion.cadena);
             SqlCon.Open();
             try
             {
-                SqlCommand SqlCmd = new SqlCommand("spinsertar_categoria", SqlCon);
+                SqlCommand SqlCmd = new SqlCommand("spinsertar_proveedor", SqlCon);
                 SqlCmd.CommandType = CommandType.StoredProcedure;
                 // PARAMETROS SEGUN TU TABLA DE BD
-                SqlCmd.Parameters.AddWithValue("@nombre_catg", Categoria.Nombre_catg);
-                SqlCmd.Parameters.AddWithValue("@descripcion", Categoria.Descripcion);
-                SqlCmd.Parameters.AddWithValue("@estado", Categoria.Estado);
-                SqlCmd.Parameters.AddWithValue("@fecha", Categoria.Fecha);
+                SqlCmd.Parameters.AddWithValue("@nombre_prov", Proveedor.Nombre_prov);
+                SqlCmd.Parameters.AddWithValue("@dire_prov", Proveedor.Dire_prov);
+                SqlCmd.Parameters.AddWithValue("@correo_prov", Proveedor.Correo_prov);
+                SqlCmd.Parameters.AddWithValue("@telf_prov", Proveedor.Telf_prov);
+                SqlCmd.Parameters.AddWithValue("@ruc", Proveedor.Ruc);
+                SqlCmd.Parameters.AddWithValue("@estado_prov", Proveedor.Estado_prov);
                 // EJECUTAR LA CONSULTA DEL CODIGO ANTERIOR
                 respuesta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se inserto";
             }
@@ -97,21 +104,23 @@ namespace CapaDatos
         }
 
         // 3. METODO PARA ACTUALIZAR (UPDATE)
-        public string ActualizarCategoria(DCategoria Categoria)
+        public string ActualizarProveedor(DProveedor Proveedor)
         {
             string respuesta = "";
             SqlConnection SqlCon = new SqlConnection(Conexion.cadena);
             SqlCon.Open();
             try
             {
-                SqlCommand SqlCmd = new SqlCommand("speditar_categoria", SqlCon);
+                SqlCommand SqlCmd = new SqlCommand("speditar_proveedor", SqlCon);
                 SqlCmd.CommandType = CommandType.StoredProcedure;
                 // PARAMETROS SEGUN TU TABLA DE BD
-                SqlCmd.Parameters.AddWithValue("@id_categoria", Categoria.Id_categoria);
-                SqlCmd.Parameters.AddWithValue("@nombre_catg", Categoria.Nombre_catg);
-                SqlCmd.Parameters.AddWithValue("@descripcion", Categoria.Descripcion);
-                SqlCmd.Parameters.AddWithValue("@estado", Categoria.Estado);
-                SqlCmd.Parameters.AddWithValue("@fecha", Categoria.Fecha);
+                SqlCmd.Parameters.AddWithValue("@id_proveedor", Proveedor.Id_proveedor);
+                SqlCmd.Parameters.AddWithValue("@nombre_prov", Proveedor.Nombre_prov);
+                SqlCmd.Parameters.AddWithValue("@dire_prov", Proveedor.Dire_prov);
+                SqlCmd.Parameters.AddWithValue("@correo_prov", Proveedor.Correo_prov);
+                SqlCmd.Parameters.AddWithValue("@telf_prov", Proveedor.Telf_prov);
+                SqlCmd.Parameters.AddWithValue("@ruc", Proveedor.Ruc);
+                SqlCmd.Parameters.AddWithValue("@estado_prov", Proveedor.Estado_prov);
                 // EJECUTAR LA CONSULTA DEL CODIGO ANTERIOR
                 respuesta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se actualizo";
             }
@@ -124,17 +133,17 @@ namespace CapaDatos
         }
 
         // 4. METODO ELIMINAR
-        public string EliminarCategoria(DCategoria Categoria)
+        public string EliminarProveedor(DProveedor Proveedor)
         {
             string respuesta = "";
             SqlConnection SqlCon = new SqlConnection(Conexion.cadena);
             SqlCon.Open();
             try
             {
-                SqlCommand SqlCmd = new SqlCommand("speliminar_categoria", SqlCon);
+                SqlCommand SqlCmd = new SqlCommand("speliminar_proveedor", SqlCon);
                 SqlCmd.CommandType = CommandType.StoredProcedure;
                 // PARAMETROS SEGUN TU TABLA DE BD
-                SqlCmd.Parameters.AddWithValue("@id_categoria", Categoria.Id_categoria);
+                SqlCmd.Parameters.AddWithValue("@id_proveedor", Proveedor.Id_proveedor);
                 // EJECUTAR LA CONSULTA DEL CODIGO ANTERIOR
                 respuesta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se eliminó";
             }
@@ -147,17 +156,17 @@ namespace CapaDatos
         }
 
         // 5. METODO BUSCAR
-        public DataTable BuscarCategoria(DCategoria Categoria)
+        public DataTable BuscarProveedor(DProveedor Proveedor)
         {
             DataTable tabla = new DataTable();
             SqlConnection SqlCon = new SqlConnection(Conexion.cadena);
             try
             {
                 SqlCon.Open();
-                SqlCommand SqlCmd = new SqlCommand("spbuscar_categoria", SqlCon);   // NOMBRE DE STOREPROCEDURE Y LA CADENA CONEXION
+                SqlCommand SqlCmd = new SqlCommand("spbuscar_proveedor", SqlCon);   // NOMBRE DE STOREPROCEDURE Y LA CADENA CONEXION
                 SqlCmd.CommandType = CommandType.StoredProcedure;
                 // PARAMETROS SEGUN LA TABLA DE BD
-                SqlCmd.Parameters.AddWithValue("@textobuscar", Categoria.Textobuscar);
+                SqlCmd.Parameters.AddWithValue("@textobuscar", Proveedor.Textobuscar);
                 SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);  // EJECUTAR COMANDO
                 SqlDat.Fill(tabla);  // LLENAR LOS DATOS DE LA BD
             }
