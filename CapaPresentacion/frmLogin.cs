@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using CapaNegocio;
 
 namespace CapaPresentacion
 {
@@ -132,6 +133,32 @@ namespace CapaPresentacion
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        // BOTON INGRESAR
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+            DataTable datos = CapaNegocio.NVendedor.Login(txtUsuario.Text, txtContrasena.Text); // ENVIO LOS PARAMETROS A LA CapaNegocio A SU CLASE     NVendedor  Y SU METODO LOGIN
+
+            if (datos.Rows.Count == 0)  // BUSCA UN RESULTADO EN LA BASE DE DATOS,SÍ ES "0" NO EXISTE
+            {
+                MessageBox.Show("Usuario o contraseña incorrecto",
+                    "Sistema de Venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUsuario.Text = string.Empty;
+                txtContrasena.Text = string.Empty;
+                txtUsuario.Focus();
+            }
+            else  // SI EXISTE EL USUARIO Y LA CONTRASEÑA EN LA BASE DE DATOS, ENTONCES MUESTRO EL FORMULARIO PRINCIPAL
+            {
+                frmPrincipal principal = new frmPrincipal(); // INSTANCIA EL FORMULARIO PRINCIPAL
+                principal.Show();                            // MOSTRO EL FORMULARIO PRINCIPAL
+                this.Hide();                                 // OCULTO EL FORMULARIO DE LOGIN
+            }
         }
     }
 }

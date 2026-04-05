@@ -32,6 +32,7 @@ usuario			   NVARCHAR(200) NOT NULL,
 contrasena         NVARCHAR(200) NOT NULL,
 acceso             NVARCHAR(100) NOT NULL
 )
+SELECT * FROM tblVendedor
 
 CREATE TABLE tblProveedor
 (
