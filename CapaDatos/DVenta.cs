@@ -63,7 +63,7 @@ namespace CapaDatos
             try
             {
                 SqlCon.ConnectionString = Conexion.cadena;  // LlAMAMOS A LA CADENA DE CONEXION
-                SqlCon.Open();                              // ABRIR LA CONEXION
+                SqlCon.Open();  // ABRIR LA CONEXION
 
                 // ESTABLECER LA TRANSACCION
                 SqlTransaction SqlTra = SqlCon.BeginTransaction();
@@ -89,7 +89,7 @@ namespace CapaDatos
                 SqlCmd.Parameters.AddWithValue("@total", Venta.Total);
 
                 // EJECUTAMOS EL COMANDO
-                respuesta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "NO SE INSERTO EL REGISTRO";
+                respuesta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "NO SE INSERTO LOS DATOS";
 
                 if (respuesta.Equals("OK")) 
                 {

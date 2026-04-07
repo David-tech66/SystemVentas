@@ -10,14 +10,17 @@ namespace CapaNegocio
 {
     public class NVenta
     {
-        public static string InsertarVenta(int id_venta, int id_cliente, int id_vendedor, DateTime fecha, decimal subtotal, decimal vuelto, DataTable dtDetalles)
+        public static string InsertarVenta(int id_venta, int id_cliente, int id_vendedor, DateTime fecha, string tipo_comprobante, string serie, string correlativo, decimal igv, decimal total, DataTable dtDetalles)
         {
-            DVenta Obj      = new DVenta();
-            Obj.Id_cliente  = id_cliente;
-            Obj.Id_vendedor = id_vendedor;
-            Obj.Fecha       = fecha;
-            Obj.Subtotal    = subtotal;
-            Obj.Vuelto      = vuelto;
+            DVenta Obj           = new DVenta();
+            Obj.Id_cliente       = id_cliente;
+            Obj.Id_vendedor      = id_vendedor;
+            Obj.Fecha            = fecha;
+            Obj.Tipo_comprobante = tipo_comprobante;
+            Obj.Serie            = serie;
+            Obj.Correlativo      = correlativo;
+            Obj.Igv              = igv;
+            Obj.Total            = total.ToString();
 
             // LLAMAMOS AL METODO DETALLE DE VENTA
             List<DDetalleVenta> detalles = new List<DDetalleVenta>();
@@ -26,9 +29,10 @@ namespace CapaNegocio
                 DDetalleVenta detalle     = new DDetalleVenta();
                 detalle.Id_venta          = Convert.ToInt32(row["id_venta"]);
                 detalle.Id_producto1      = Convert.ToInt32(row["id_producto1"]);
+                detalle.Fecha_detalle     = Convert.ToDateTime(row["fecha_detalle"]);
                 detalle.Cantidad_unitaria = Convert.ToInt32(row["cantidad_unitaria"]);
                 detalle.Subtotal_venta    = Convert.ToDecimal(row["subtotal_venta"]);
-                detalle.Vuelto            = Convert.ToDecimal(row["vuelto"]);
+
                 detalles.Add(detalle);
             }
             // ENVIAMOS TODO LO QUE ES LA VENTA Y SU DETALLE

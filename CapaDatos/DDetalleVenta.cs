@@ -18,7 +18,6 @@ namespace CapaDatos
         private DateTime _fecha_detalle;
         private int _cantidad_unitaria;
         private decimal _subtotal_venta;
-        private decimal _vuelto;
 
         // Get (Obtener) y Set (Enviar o insertar): Encapsulado
         public int Id_det_venta { get => _id_det_venta; set => _id_det_venta = value; }
@@ -27,7 +26,6 @@ namespace CapaDatos
         public DateTime Fecha_detalle { get => _fecha_detalle; set => _fecha_detalle = value; }
         public int Cantidad_unitaria { get => _cantidad_unitaria; set => _cantidad_unitaria = value; }
         public decimal Subtotal_venta { get => _subtotal_venta; set => _subtotal_venta = value; }
-        public decimal Vuelto { get => _vuelto; set => _vuelto = value; }
 
         // CONSTRUCTOR VACIO
         public DDetalleVenta()
@@ -36,7 +34,7 @@ namespace CapaDatos
         }
 
         // CONSTRUCTOR CON PARAMETROS
-        public DDetalleVenta(int id_det_venta, int id_venta, int id_producto1, DateTime fecha_detalle, int cantidad_unitaria, decimal subtotal_venta, decimal vuelto)
+        public DDetalleVenta(int id_det_venta, int id_venta, int id_producto1, DateTime fecha_detalle, int cantidad_unitaria, decimal subtotal_venta)
         {
             // INICIALIZAR LAS PROPIEDADES DE LA CLASE
             Id_det_venta      = id_det_venta;
@@ -45,7 +43,6 @@ namespace CapaDatos
             Fecha_detalle     = fecha_detalle;
             Cantidad_unitaria = cantidad_unitaria;
             Subtotal_venta    = subtotal_venta;
-            Vuelto            = vuelto;
         }
 
         // 1. METODO PARA INSERTAR
@@ -61,10 +58,9 @@ namespace CapaDatos
                 SqlCmd.CommandType = System.Data.CommandType.StoredProcedure;   // Tipo de comando: Procedimiento almacenado
                 SqlCmd.Parameters.AddWithValue("@id_venta", Detalle_Venta.Id_venta);
                 SqlCmd.Parameters.AddWithValue("@id_producto1", Detalle_Venta.Id_producto1);
-                SqlCmd.Parameters.AddWithValue("@fecha_det", Detalle_Venta.Fecha_detalle);
-                SqlCmd.Parameters.AddWithValue("@cantidad_uni_det", Detalle_Venta.Cantidad_unitaria);
-                SqlCmd.Parameters.AddWithValue("@subtotal_det_vent", Detalle_Venta.Subtotal_venta);
-                SqlCmd.Parameters.AddWithValue("@vuelto", Detalle_Venta.Vuelto);
+                SqlCmd.Parameters.AddWithValue("@fecha_detalle", Detalle_Venta.Fecha_detalle);
+                SqlCmd.Parameters.AddWithValue("@cantidad_unitaria", Detalle_Venta.Cantidad_unitaria);
+                SqlCmd.Parameters.AddWithValue("@subtotal_venta", Detalle_Venta.Subtotal_venta);
 
                 // EJECUTA EL QUERY DEL PROCEDIMIENTO ALMACENADO
                 respuesta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "NO se Ingreso el Registro";

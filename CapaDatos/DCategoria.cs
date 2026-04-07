@@ -177,7 +177,7 @@ namespace CapaDatos
             try
             {
                 SqlCon.Open();
-                SqlCommand SqlCmd = new SqlCommand("spmostrar_productosCliente", SqlCon);   // 2 PAÁMETROS: NOMBRE DEL STOREDPROCEDURE Y LA CADENA DE CONEXIÓN
+                SqlCommand SqlCmd = new SqlCommand("spmostrar_productos_cliente", SqlCon);   // 2 PAÁMETROS: NOMBRE DEL STOREDPROCEDURE Y LA CADENA DE CONEXIÓN
                 SqlCmd.CommandType = CommandType.StoredProcedure;   // PROCEDIMIENTO ALMACENADO
                 SqlCmd.Parameters.AddWithValue("@textobuscar", Categoria.Textobuscar);
                 SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd); // EJECUTA EL COMANDO
