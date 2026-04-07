@@ -148,17 +148,27 @@ namespace CapaPresentacion
             if (datos.Rows.Count == 0)  // BUSCA UN RESULTADO EN LA BASE DE DATOS,SÍ ES "0" NO EXISTE
             {
                 MessageBox.Show("Usuario o contraseña incorrecto",
-                    "Sistema de Venta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUsuario.Text = string.Empty;
                 txtContrasena.Text = string.Empty;
                 txtUsuario.Focus();
             }
             else  // SI EXISTE EL USUARIO Y LA CONTRASEÑA EN LA BASE DE DATOS, ENTONCES MUESTRO EL FORMULARIO PRINCIPAL
             {
-                frmPrincipal principal = new frmPrincipal(); // INSTANCIA EL FORMULARIO PRINCIPAL
-                principal.Show();                            // MOSTRO EL FORMULARIO PRINCIPAL
-                this.Hide();                                 // OCULTO EL FORMULARIO DE LOGIN
+                frmPrincipal principal = new frmPrincipal(); // INSTANCIA EL FORMULARIO PRINCIPAL CAPTURANDO LOS DATOS DEL PROCEDIMIENTO ALMACENADO Y ENVIANDOLOS AL FORMULARIO PRINCIPAL
+                principal.id_vendedor      = datos.Rows[0][0].ToString();    // FILA(0) COLUMNA(0)
+                principal.primer_apellido  = datos.Rows[0][1].ToString();    // FILA(0) COLUMNA(1)
+                principal.segundo_apellido = datos.Rows[0][2].ToString();    // FILA(0) COLUMNA(2)
+                principal.acceso           = datos.Rows[0][3].ToString();    // FILA(0) COLUMNA(3)
+
+                principal.Show();   // MOSTRO EL FORMULARIO PRINCIPAL
+                this.Hide();    // OCULTO EL FORMULARIO DE LOGIN
             }
+        }
+
+        private void combEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

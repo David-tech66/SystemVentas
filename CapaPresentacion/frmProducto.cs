@@ -169,5 +169,10 @@ namespace CapaPresentacion
         {
             Close();
         }
+
+        private void dtProducto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

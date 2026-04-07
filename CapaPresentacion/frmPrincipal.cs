@@ -12,17 +12,34 @@ namespace CapaPresentacion
 {
     public partial class frmPrincipal : Form
     {
-        /* VARIABLES GLOBALES
-        public string id_empleado = "";
-        public string num_doc = "";
-        public string ap_paterno = "";
-        public string ap_materno = "";
-        public string acceso = "";
-        */
+        // VARIABLES GLOBALES
+        public string id_vendedor      = "";
+        public string primer_apellido  = "";
+        public string segundo_apellido = "";
+        public string acceso           = "";
 
         public frmPrincipal()
         {
             InitializeComponent();
+        }
+
+        // METODO PARA CONTROLAR LOS ACCESOS DE LOS USUARIOS SEGUN SU ROL
+        private void GestionarUsuarios() 
+        {
+            // CONTROL DEL ACCESO
+            if (acceso == "ADMINISTRADOR")
+            {
+                //AccesoUsuario.Text = "USUARIO: " + acceso;
+            }
+            else if (acceso == "VENDEDOR")
+            {
+                //AccesoUsuario.Text = "USUARIO: " + acceso;
+                //Button2.Visible = false;
+            }
+            else if (acceso == "INVITADO") 
+            { 
+                //AccesoUsuario.Text = "USUARIO: " + acceso;
+            }
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
@@ -84,6 +101,8 @@ namespace CapaPresentacion
         {
 
         }
+
+        // METODO PARA ABRIR LOS FORMULARIOS DENTRO DEL PANEL CONTENEDOR
         private void AbrirFormularioEnPanel(Form formularioHijo)
         {
             // 1. Limpiamos el panel de cualquier control previo (otros formularios)
@@ -200,5 +219,38 @@ namespace CapaPresentacion
         {
 
         }
+
+        //private void button1_Click_1(object sender, EventArgs e)
+        //{
+        //    Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmCategoria);
+        //    if (frm != null)
+        //    {
+        //        frm.BringToFront();
+        //        return;
+        //    }
+        //    frmCategoria categoria = new frmCategoria();
+        //    categoria.Show();
+        //}
+
+        //private void frmPrincipal_Load(object sender, EventArgs e)
+        //{
+        //    GestionUsuarios();
+        //    Usuario.Text = ap_paterno + " " + ap_materno;//Apellido del empleado
+        //}
+
+        //private void button1_MouseHover(object sender, EventArgs e)
+        //{
+        //    button1.BackColor = Color.FromArgb(21, 101, 192);
+        //}
+
+        //private void button1_MouseLeave(object sender, EventArgs e)
+        //{
+        //    button1.BackColor = Color.FromArgb(40, 53, 147);
+        //}
+
+        //private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    Application.Exit();
+        //}
     }
 }

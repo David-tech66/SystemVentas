@@ -17,27 +17,25 @@ namespace CapaNegocio
         }
 
         // 2. METODO "INSERTAR" QUE LLAMA AL METODO INSERTAR DE LA CLASE DProducto
-        public static string InsertarProducto(string nombre_prod, string descripcion, decimal precio, int stock, DateTime fecha_ingreso)
+        public static string InsertarProducto(string nombre_prod, string descripcion, decimal precio, DateTime fecha_ingreso)
         {
             DProducto Obj     = new DProducto();
             Obj.Nombre_prod   = nombre_prod;
             Obj.Descripcion   = descripcion;
             Obj.Precio        = precio;
-            Obj.Stock         = stock;
             Obj.Fecha_ingreso = fecha_ingreso;
 
             return Obj.InsertarProducto(Obj);
         }
 
         // 3. METODO "ACTUALIZAR" QUE LLAMA AL METODO ACTUALIZAR DE LA CLASE DCategoria
-        public static string ActualizarProducto(int id_producto, string nombre_prod, string descripcion, decimal precio, int stock, DateTime fecha_ingreso)
+        public static string ActualizarProducto(int id_producto, string nombre_prod, string descripcion, decimal precio, DateTime fecha_ingreso)
         {
             DProducto Obj     = new DProducto();
             Obj.Id_producto   = id_producto;
             Obj.Nombre_prod   = nombre_prod;
             Obj.Descripcion   = descripcion;
             Obj.Precio        = precio;
-            Obj.Stock         = stock;
             Obj.Fecha_ingreso = fecha_ingreso;
 
             return Obj.ActualizarProducto(Obj);

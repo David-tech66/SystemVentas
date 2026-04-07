@@ -21,7 +21,7 @@ namespace CapaPresentacion
         // METODO PARA MOSTRAR LOS REGISTROS DE LA TABLA CATEGORIA EN EL DATAGRIDVIEW
         private void MostrarCategoria()
         {
-            dataGridView1.DataSource = NCategoria.MostrarCategoria();
+            dtCategoria.DataSource = NCategoria.MostrarCategoria();
         }
 
         // METODO PARA MOSTRAR LOS REGISTROS DE LA TABLA CATEGORIA EN EL DATAGRIDVIEW CUANDO SE CARGUE EL FORMULARIO
@@ -49,12 +49,12 @@ namespace CapaPresentacion
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             // CAPTURAMOS EL VALOR DE LA COLUMNA EN UN TextBox LLAMADO txtID
-            txtID.Text = dataGridView1.CurrentRow.Cells["ID"].Value.ToString();
+            txtID.Text = dtCategoria.CurrentRow.Cells["ID"].Value.ToString();
             // CAPTURA EL VALOR DE LA COLUMNA (NOMBRE) EN UN TextBox LLAMADO txtNombre
-            txtNombre.Text = dataGridView1.CurrentRow.Cells["CATEGORIA"].Value.ToString();
-            txtDescripcion.Text = dataGridView1.CurrentRow.Cells["DESCRIPCION"].Value.ToString();
-            combEstado.Text = dataGridView1.CurrentRow.Cells["ESTADO"].Value.ToString();
-            dtFecha.Text = dataGridView1.CurrentRow.Cells["FECHA"].Value.ToString();
+            txtNombre.Text = dtCategoria.CurrentRow.Cells["CATEGORIA"].Value.ToString();
+            txtDescripcion.Text = dtCategoria.CurrentRow.Cells["DESCRIPCION"].Value.ToString();
+            combEstado.Text = dtCategoria.CurrentRow.Cells["ESTADO"].Value.ToString();
+            dtFecha.Text = dtCategoria.CurrentRow.Cells["FECHA"].Value.ToString();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -145,13 +145,12 @@ namespace CapaPresentacion
                 if (txtID.Text == "")
                 {
                     MessageBox.Show("No se ha seleccionado ningún registro.",
-                        "db_SistemaVenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                        "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     DialogResult Opcion1;
-                    Opcion1 = MessageBox.Show("¿Realmente desea eliminar el registro?", "db_SistemaVenta",
+                    Opcion1 = MessageBox.Show("¿Realmente desea eliminar el registro?", "TechSolution",
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                     if (Opcion1 == DialogResult.OK)
@@ -161,7 +160,7 @@ namespace CapaPresentacion
                         if (respuesta.Equals("OK"))
                         {
                             MessageBox.Show("El registro se eliminó correctamente.",
-                                "db_SistemaVenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             MostrarCategoria();
                         }
                     }
@@ -182,17 +181,16 @@ namespace CapaPresentacion
                 if (txtID.Text == "")
                 {
                     MessageBox.Show("No se ha seleccionado ningun registro.",
-                        "db_SistemaVenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    respuesta = NCategoria.ActualizarCategoria(Convert.ToInt32(txtID.Text), txtNombre.Text, txtDescripcion.Text,
-                        combEstado.Text, dtFecha.Value);
+                    respuesta = NCategoria.ActualizarCategoria(Convert.ToInt32(txtID.Text), txtNombre.Text, txtDescripcion.Text, combEstado.Text, dtFecha.Value);
 
                     if (respuesta.Equals("OK"))
                     {
                         MessageBox.Show("Los datos se actualizaron correctamente.",
-                            "db_SistemaVenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MostrarCategoria();
                     }
                     else
@@ -216,7 +214,7 @@ namespace CapaPresentacion
                 if (txtNombre.Text == "" || txtDescripcion.Text == "" || combEstado.Text == "" || dtFecha.Text == "")
                 {
                     MessageBox.Show("Faltan ingresar algunos datos.",
-                        "Sistema de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -225,7 +223,7 @@ namespace CapaPresentacion
                     if (respuesta.Equals("OK"))
                     {
                         MessageBox.Show("Se insertó de forma correcta el registro.",
-                            "Sistema de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MostrarCategoria();
                     }
                     else
@@ -258,7 +256,7 @@ namespace CapaPresentacion
         // METODO PARA BUSCAR REGISTROS EN LA TABLA CATEGORIA
         private void BuscarCategoria()
         {
-            dataGridView1.DataSource = NCategoria.BuscarCategoria(txtBuscar.Text);
+            dtCategoria.DataSource = NCategoria.BuscarCategoria(txtBuscar.Text);
         }
         // LLAMAMOS AL METODO BUSCAR CATEGORIA
         private void guna2TextBox1_TextChanged_2(object sender, EventArgs e)

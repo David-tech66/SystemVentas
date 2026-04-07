@@ -45,9 +45,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtUsuario = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtContrasena = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtAcceso = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.combAcceso = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2Panel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -91,10 +91,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.iconPictureBox3);
+            this.panel1.Controls.Add(this.combAcceso);
             this.panel1.Controls.Add(this.btnIngresar);
             this.panel1.Controls.Add(this.guna2ShadowPanel2);
             this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.iconPictureBox3);
             this.panel1.Controls.Add(this.iconPictureBox2);
             this.panel1.Controls.Add(this.iconPictureBox1);
             this.panel1.Controls.Add(this.label1);
@@ -105,7 +106,6 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtUsuario);
             this.panel1.Controls.Add(this.txtContrasena);
-            this.panel1.Controls.Add(this.txtAcceso);
             this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.panel1.Location = new System.Drawing.Point(43, 38);
             this.panel1.Name = "panel1";
@@ -159,7 +159,7 @@
             this.iconPictureBox3.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox3.IconSize = 20;
-            this.iconPictureBox3.Location = new System.Drawing.Point(39, 241);
+            this.iconPictureBox3.Location = new System.Drawing.Point(39, 246);
             this.iconPictureBox3.Name = "iconPictureBox3";
             this.iconPictureBox3.Size = new System.Drawing.Size(20, 20);
             this.iconPictureBox3.TabIndex = 23;
@@ -304,28 +304,6 @@
             this.txtContrasena.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtContrasena.UseSystemPasswordChar = true;
             // 
-            // txtAcceso
-            // 
-            this.txtAcceso.BorderColor = System.Drawing.Color.DarkGray;
-            this.txtAcceso.BorderRadius = 10;
-            this.txtAcceso.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtAcceso.DefaultText = "";
-            this.txtAcceso.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtAcceso.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtAcceso.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtAcceso.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtAcceso.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtAcceso.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtAcceso.ForeColor = System.Drawing.Color.DimGray;
-            this.txtAcceso.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtAcceso.Location = new System.Drawing.Point(35, 236);
-            this.txtAcceso.Name = "txtAcceso";
-            this.txtAcceso.PlaceholderText = "";
-            this.txtAcceso.SelectedText = "";
-            this.txtAcceso.Size = new System.Drawing.Size(253, 33);
-            this.txtAcceso.TabIndex = 29;
-            this.txtAcceso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // guna2ShadowPanel1
             // 
             this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
@@ -348,6 +326,29 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            // 
+            // combAcceso
+            // 
+            this.combAcceso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.combAcceso.BackColor = System.Drawing.Color.Transparent;
+            this.combAcceso.BorderRadius = 8;
+            this.combAcceso.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.combAcceso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combAcceso.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.combAcceso.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.combAcceso.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.combAcceso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
+            this.combAcceso.ItemHeight = 30;
+            this.combAcceso.Items.AddRange(new object[] {
+            "ADMINISTRADOR",
+            "VENDEDOR",
+            "ALMACENERO"});
+            this.combAcceso.Location = new System.Drawing.Point(33, 239);
+            this.combAcceso.Name = "combAcceso";
+            this.combAcceso.Size = new System.Drawing.Size(253, 36);
+            this.combAcceso.TabIndex = 29;
+            this.combAcceso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.combAcceso.SelectedIndexChanged += new System.EventHandler(this.combEstado_SelectedIndexChanged);
             // 
             // frmLogin
             // 
@@ -392,8 +393,8 @@
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2TextBox txtUsuario;
         private Guna.UI2.WinForms.Guna2TextBox txtContrasena;
-        private Guna.UI2.WinForms.Guna2TextBox txtAcceso;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private Guna.UI2.WinForms.Guna2ComboBox combAcceso;
     }
 }
