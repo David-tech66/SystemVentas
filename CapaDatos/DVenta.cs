@@ -15,18 +15,24 @@ namespace CapaDatos
         private int _id_cliente;
         private int _id_vendedor;
         private DateTime _fecha;
-        private int _total;
-        private decimal _subtotal;
-        private decimal _vuelto;
+        private string _tipo_comprobante;
+        private string _serie;
+        private string _correlativo;
+        private decimal _igv;   // IGV: IMPUESTO GENERAL A LAS VENTAS
+        private string _total;
+
 
         // Get (Obtener) y Set (Enviar o insertar): Encapsulado
         public int Id_venta { get => _id_venta; set => _id_venta = value; }
         public int Id_cliente { get => _id_cliente; set => _id_cliente = value; }
         public int Id_vendedor { get => _id_vendedor; set => _id_vendedor = value; }
         public DateTime Fecha { get => _fecha; set => _fecha = value; }
-        public int Total { get => _total; set => _total = value; }
-        public decimal Subtotal { get => _subtotal; set => _subtotal = value; }
-        public decimal Vuelto { get => _vuelto; set => _vuelto = value; }
+        public string Tipo_comprobante { get => _tipo_comprobante; set => _tipo_comprobante = value; }
+        public string Serie { get => _serie; set => _serie = value; }
+        public string Correlativo { get => _correlativo; set => _correlativo = value; }
+        public decimal Igv { get => _igv; set => _igv = value; }
+        public string Total { get => _total; set => _total = value; }
+
 
         // CONSTRUCTOR VACIO
         public DVenta()
@@ -35,15 +41,18 @@ namespace CapaDatos
         }
 
         // CONSTRUCTOR CON PARAMETROS
-        public DVenta(int id_venta, int id_cliente, int id_vendedor, DateTime fecha, decimal subtotal, decimal vuelto)
+        public DVenta(int id_venta, int id_cliente, int id_vendedor, DateTime fecha, string tipo_comprobante, string serie, string correlativo, decimal igv, decimal total)
         {
             // INICIALIZAR LAS PROPIEDADES DE LA CLASE
-            Id_venta    = id_venta;
-            Id_cliente  = id_cliente;
-            Id_vendedor = id_vendedor;
-            Fecha       = fecha;
-            Subtotal    = subtotal;
-            Vuelto      = vuelto;
+            Id_venta         = id_venta;
+            Id_cliente       = id_cliente;
+            Id_vendedor      = id_vendedor;
+            Fecha            = fecha;
+            Tipo_comprobante = tipo_comprobante;
+            Serie            = serie;
+            Correlativo      = correlativo;
+            Igv              = igv;
+            Total            = total.ToString();
         }
 
         // 1. METODO PARA INSERTAR
@@ -73,9 +82,11 @@ namespace CapaDatos
                 // AGREGAR PARAMETROS
                 SqlCmd.Parameters.AddWithValue("@id_vendedor", Venta.Id_vendedor);
                 SqlCmd.Parameters.AddWithValue("@fecha", Venta.Fecha);
+                SqlCmd.Parameters.AddWithValue("@tipo_comprobante", Venta.Tipo_comprobante);
+                SqlCmd.Parameters.AddWithValue("@serie", Venta.Serie);
+                SqlCmd.Parameters.AddWithValue("@correlativo", Venta.Correlativo);
+                SqlCmd.Parameters.AddWithValue("@igv", Venta.Igv);
                 SqlCmd.Parameters.AddWithValue("@total", Venta.Total);
-                SqlCmd.Parameters.AddWithValue("@subtotal", Venta.Subtotal);
-                SqlCmd.Parameters.AddWithValue("@vuelto", Venta.Vuelto);
 
                 // EJECUTAMOS EL COMANDO
                 respuesta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "NO SE INSERTO EL REGISTRO";

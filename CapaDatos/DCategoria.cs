@@ -52,11 +52,9 @@ namespace CapaDatos
             try
             {
                 SqlCon.Open();
-                SqlCommand SqlCmd = new SqlCommand("spmostrar_categoria", SqlCon);
-                // NOMBRE DE STOREPROCEDURE Y LA CADENA CONEXION
-                SqlCmd.CommandType = CommandType.StoredProcedure;
-
-                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);  // EJECUTAR COMANDO
+                SqlCommand SqlCmd = new SqlCommand("spmostrar_categoria", SqlCon);  // CONTIENE 2 PARAMETROS
+                SqlCmd.CommandType = CommandType.StoredProcedure;    // NOMBRE DE STOREPROCEDURE Y LA CADENA CONEXION
+                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);  // EJECUTA COMANDO
                 SqlDat.Fill(tabla);  // LLENAR LOS DATOS DE LA BD
             }
             catch (Exception ex)
@@ -80,7 +78,7 @@ namespace CapaDatos
             {
                 SqlCommand SqlCmd = new SqlCommand("spinsertar_categoria", SqlCon);
                 SqlCmd.CommandType = CommandType.StoredProcedure;
-                // PARAMETROS SEGUN TU TABLA DE BD
+                // PARAMETROS SEGUN LA TABLA EN LA BD
                 SqlCmd.Parameters.AddWithValue("@nombre_catg", Categoria.Nombre_catg);
                 SqlCmd.Parameters.AddWithValue("@descripcion", Categoria.Descripcion);
                 SqlCmd.Parameters.AddWithValue("@estado", Categoria.Estado);
@@ -106,14 +104,14 @@ namespace CapaDatos
             {
                 SqlCommand SqlCmd = new SqlCommand("speditar_categoria", SqlCon);
                 SqlCmd.CommandType = CommandType.StoredProcedure;
-                // PARAMETROS SEGUN TU TABLA DE BD
+                // PARAMETROS SEGUN LA TABLA EN LA BD
                 SqlCmd.Parameters.AddWithValue("@id_categoria", Categoria.Id_categoria);
                 SqlCmd.Parameters.AddWithValue("@nombre_catg", Categoria.Nombre_catg);
                 SqlCmd.Parameters.AddWithValue("@descripcion", Categoria.Descripcion);
                 SqlCmd.Parameters.AddWithValue("@estado", Categoria.Estado);
                 SqlCmd.Parameters.AddWithValue("@fecha", Categoria.Fecha);
-                // EJECUTAR LA CONSULTA DEL CODIGO ANTERIOR
-                respuesta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se actualizo";
+                // EJECUTA LA CONSULTA DEL CODIGO ANTERIOR
+                respuesta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se actualizó";
             }
             catch (Exception ex)
             {
@@ -133,9 +131,9 @@ namespace CapaDatos
             {
                 SqlCommand SqlCmd = new SqlCommand("speliminar_categoria", SqlCon);
                 SqlCmd.CommandType = CommandType.StoredProcedure;
-                // PARAMETROS SEGUN TU TABLA DE BD
+                // PARAMETROS SEGUN LA TABLA EN LA BD
                 SqlCmd.Parameters.AddWithValue("@id_categoria", Categoria.Id_categoria);
-                // EJECUTAR LA CONSULTA DEL CODIGO ANTERIOR
+                // EJECUTA LA CONSULTA DEL CODIGO ANTERIOR
                 respuesta = SqlCmd.ExecuteNonQuery() == 1 ? "OK" : "No se eliminó";
             }
             catch (Exception ex)
@@ -156,10 +154,34 @@ namespace CapaDatos
                 SqlCon.Open();
                 SqlCommand SqlCmd = new SqlCommand("spbuscar_categoria", SqlCon);   // NOMBRE DE STOREPROCEDURE Y LA CADENA CONEXION
                 SqlCmd.CommandType = CommandType.StoredProcedure;
-                // PARAMETROS SEGUN LA TABLA DE BD
-                SqlCmd.Parameters.AddWithValue("@textobuscar", Categoria.Textobuscar);
-                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);  // EJECUTAR COMANDO
+                SqlCmd.Parameters.AddWithValue("@textobuscar", Categoria.Textobuscar);  // PARÁMETRO 1
+                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);  // EJECUTA COMANDO
                 SqlDat.Fill(tabla);  // LLENAR LOS DATOS DE LA BD
+            }
+            catch (Exception ex)
+            {
+                tabla = null;
+            }
+            finally
+            {
+                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
+            }
+            return tabla;
+        }
+
+        // 6. METODO MOSTRAR PRODUCTOS CLIENTE
+        public DataTable MostrarProductosCliente(DCategoria Categoria)
+        {
+            DataTable tabla = new DataTable();
+            SqlConnection SqlCon = new SqlConnection(Conexion.cadena);
+            try
+            {
+                SqlCon.Open();
+                SqlCommand SqlCmd = new SqlCommand("spmostrar_productosCliente", SqlCon);   // 2 PAÁMETROS: NOMBRE DEL STOREDPROCEDURE Y LA CADENA DE CONEXIÓN
+                SqlCmd.CommandType = CommandType.StoredProcedure;   // PROCEDIMIENTO ALMACENADO
+                SqlCmd.Parameters.AddWithValue("@textobuscar", Categoria.Textobuscar);
+                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd); // EJECUTA EL COMANDO
+                SqlDat.Fill(tabla);  // LLENA LOS DATOS DE LA BD
             }
             catch (Exception ex)
             {

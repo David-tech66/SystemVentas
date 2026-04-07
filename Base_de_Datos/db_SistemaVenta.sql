@@ -34,6 +34,7 @@ acceso             NVARCHAR(100) NOT NULL
 )
 SELECT * FROM tblVendedor
 
+
 CREATE TABLE tblProveedor
 (
 id_proveedor	INT PRIMARY KEY IDENTITY(1, 1),
@@ -77,24 +78,32 @@ id_producto		INT PRIMARY KEY IDENTITY(1, 1),
 id_categoria	INT,
 id_marca		INT,
 nombre_prod		NVARCHAR(200) NOT NULL,
+descripcion     NVARCHAR(200) NOT NULL,
 precio			DECIMAL(18,2) NOT NULL,
 stock			INT NOT NULL,
-garantia		INT NOT NULL,
 fech_ingreso	DATETIME NOT NULL
 constraint fk_fcategoria foreign key(id_categoria) references tblCategoria(id_categoria),
 constraint fk_fmarca foreign key(id_marca) references tblMarca(id_marca)
 )
+SELECT * FROM tblProducto
+
 
 CREATE TABLE tblVenta
 (
-id_venta		INT PRIMARY KEY IDENTITY(1, 1),
-id_cliente		INT,
-id_vendedor		INT,
-fecha			DATETIME NOT NULL,
-
+id_venta		 INT PRIMARY KEY IDENTITY(1, 1),
+id_cliente		 INT,
+id_vendedor		 INT,
+fecha			 DATETIME NOT NULL,
+tipo_comprobante VARCHAR(20) NOT NULL,
+serie			 VARCHAR(4) NOT NULL,
+correlativo	     VARCHAR(10) NOT NULL,
+igv			     DECIMAL(18, 0) NOT NULL,
+total			 DECIMAL(18, 0) NOT NULL
 constraint fk_fcliente foreign key(id_cliente) references tblCliente(id_cliente),
 constraint fk_fvendedor foreign key(id_vendedor) references tblVendedor(id_vendedor)
 )
+SELECT * FROM tblVenta
+
 
 -- TABLA INTERMEDIA --
 CREATE TABLE tblDetalleVenta
@@ -109,6 +118,7 @@ vuelto				DECIMAL(18,0) NOT NULL
 constraint fk_fventa foreign key(id_venta) references tblVenta(id_venta),
 constraint fk_fproducto1 foreign key(id_producto1) references tblProducto(id_producto)
 )
+SELECT * FROM tblDetalleVenta
 
 
 CREATE TABLE tblCompra
@@ -119,6 +129,8 @@ total_compra	DECIMAL(18,2) NOT NULL,
 fecha_compra	DATETIME NOT NULL,
 constraint fk_fproveedor foreign key(id_proveedor) references tblProveedor(id_proveedor)
 )
+SELECT * FROM tblCompra
+
 
 -- TABLA INTERMEDIA --
 CREATE TABLE tblDetalleCompra
@@ -132,6 +144,8 @@ subtotal_det	DECIMAL(18,2) NOT NULL
 constraint fk_fcompra foreign key(id_compra) references tblCompra(id_compra),
 constraint fk_fproducto foreign key(id_producto) references tblProducto(id_producto)
 )
+SELECT * FROM tblDetalleCompra
+
 
 CREATE TABLE tblPago
 (
@@ -143,12 +157,4 @@ monto		DECIMAL(18,2) NOT NULL,
 vuelto_pago DECIMAL(18,2)
 constraint fk_fventa1 foreign key(id_venta1) references tblVenta(id_venta)
 )
-
-/*
-CRETE PROC splogin
-@usuario varchar(20),
-@contasena varchar(255)
-as select id_empleado, num_doc, ap_materno, ap_paterno, acceso
-from tblEmpleado
-where usuario = @usuario and contrasena = @contrasena
-*/
+SELECT * FROM tblPago
