@@ -110,7 +110,20 @@ namespace CapaPresentacion
 
         }
 
-        // BOTON REGISTRAR
+        // METODO PARA LIMPIAR LOS CAMPOS DE TEXTO
+        private void Limpiar()
+        {
+            txtID.Clear();
+            txtNombre.Clear();
+            txtDireccion.Clear();
+            txtCorreo.Clear();
+            txtTelefono.Clear();
+            txtRuc.Clear();
+            combEstado.SelectedIndex = -1;  // LIMPIAMOS EL COMBOBOX DEJANDOLO SON NINGUN VALOR SELECCIONADO
+            txtNombre.Focus();  // COLOCAMOS EL CURSOR EN EL CAMPO NOMBRE PARA INCIAR EL REGISTRO DE UN NUEVO PROVEEDOR
+        }
+
+        //// BOTON REGISTRAR
         private void btnRegistrar_Click_1(object sender, EventArgs e)
         {
             try
@@ -123,10 +136,12 @@ namespace CapaPresentacion
                 else
                 {
                     respuesta = NProveedor.InsertarProveedor(txtNombre.Text, txtDireccion.Text, txtCorreo.Text, txtTelefono.Text, txtRuc.Text, combEstado.Text);
+
                     if (respuesta.Equals("OK"))
                     {
                         MessageBox.Show("Se insertó de forma correcta el registro.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MostrarProveedor();
+                        this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO DESPUES DE REGISTRAR UN NUEVO PROVEEDOR
                     }
                     else
                     {
@@ -136,8 +151,10 @@ namespace CapaPresentacion
             }
             catch (Exception ex)
             {
-
+                // MOSTRAMOS EL MENSAJE DE ERROR EN CASO DE QUE OCURRA UNA EXCEPCION
+                MessageBox.Show("Error: " + ex.Message);
             }
+
         }
 
         // BOTON ACTUALIZAR
@@ -158,6 +175,7 @@ namespace CapaPresentacion
                     {
                         MessageBox.Show("Los datos se actualizaron correctamente.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MostrarProveedor();
+                        this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO DESPUES DE REGISTRAR UN NUEVO PROVEEDOR
                     }
                     else
                     {
@@ -193,6 +211,7 @@ namespace CapaPresentacion
                         {
                             MessageBox.Show("El registro se eliminó correctamente.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             MostrarProveedor();
+                            this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO DESPUES DE REGISTRAR UN NUEVO PROVEEDOR
                         }
                     }
                 }
@@ -220,17 +239,22 @@ namespace CapaPresentacion
             BuscarProveedor();
         }
 
+        // METODO PARA CAPTURAR LOS DATOS DE LA FILA SELECCIONADA EN EL DATAGRIDVIEW Y MOSTRARLOS EN LOS CAMPOS DE TEXTO
         private void dtProveedor_DoubleClick(object sender, EventArgs e)
         {
-            // CAPTURAMOS EL VALOR DE LA COLUMNA EN UN TextBox LLAMADO txtID
-            txtID.Text = dtProveedor.CurrentRow.Cells["ID"].Value.ToString();
-            // CAPTURA EL VALOR DE LA COLUMNA (NOMBRE) EN UN TextBox LLAMADO txtNombre
-            txtNombre.Text = dtProveedor.CurrentRow.Cells["NOMBRE"].Value.ToString();
-            txtDireccion.Text = dtProveedor.CurrentRow.Cells["DIRECCION"].Value.ToString();
-            txtCorreo.Text = dtProveedor.CurrentRow.Cells["CORREO"].Value.ToString();
-            txtTelefono.Text = dtProveedor.CurrentRow.Cells["TELEFONO"].Value.ToString();
-            txtRuc.Text = dtProveedor.CurrentRow.Cells["RUC"].Value.ToString();
-            combEstado.Text = dtProveedor.CurrentRow.Cells["ESTADO"].Value.ToString();
+            // VERIFICAMOS QUE EL USUARIO HAYA SELECCIONADO UNA FILA
+            if (dtProveedor.CurrentRow != null)
+            {
+                // CAPTURAMOS EL VALOR DE LA COLUMNA EN UN TextBox LLAMADO txtID
+                txtID.Text = dtProveedor.CurrentRow.Cells["ID"].Value.ToString();
+                // CAPTURA EL VALOR DE LA COLUMNA (NOMBRE) EN UN TextBox LLAMADO txtNombre
+                txtNombre.Text = dtProveedor.CurrentRow.Cells["NOMBRE"].Value.ToString();
+                txtDireccion.Text = dtProveedor.CurrentRow.Cells["DIRECCION"].Value.ToString();
+                txtCorreo.Text = dtProveedor.CurrentRow.Cells["CORREO"].Value.ToString();
+                txtTelefono.Text = dtProveedor.CurrentRow.Cells["TELEFONO"].Value.ToString();
+                txtRuc.Text = dtProveedor.CurrentRow.Cells["RUC"].Value.ToString();
+                combEstado.Text = dtProveedor.CurrentRow.Cells["ESTADO"].Value.ToString();
+            }
         }
     }
 }

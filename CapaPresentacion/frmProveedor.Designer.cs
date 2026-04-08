@@ -144,7 +144,7 @@
             this.combEstado.Location = new System.Drawing.Point(21, 311);
             this.combEstado.Name = "combEstado";
             this.combEstado.Size = new System.Drawing.Size(216, 36);
-            this.combEstado.TabIndex = 34;
+            this.combEstado.TabIndex = 20;
             this.combEstado.SelectedIndexChanged += new System.EventHandler(this.combEstado_SelectedIndexChanged);
             // 
             // txtTelefono
@@ -167,7 +167,7 @@
             this.txtTelefono.PlaceholderText = "";
             this.txtTelefono.SelectedText = "";
             this.txtTelefono.Size = new System.Drawing.Size(216, 26);
-            this.txtTelefono.TabIndex = 19;
+            this.txtTelefono.TabIndex = 18;
             this.txtTelefono.TextChanged += new System.EventHandler(this.txtTelefono_TextChanged);
             // 
             // txtRuc
@@ -190,7 +190,7 @@
             this.txtRuc.PlaceholderText = "";
             this.txtRuc.SelectedText = "";
             this.txtRuc.Size = new System.Drawing.Size(216, 26);
-            this.txtRuc.TabIndex = 18;
+            this.txtRuc.TabIndex = 19;
             this.txtRuc.TextChanged += new System.EventHandler(this.txtRuc_TextChanged);
             // 
             // txtCorreo
@@ -380,7 +380,7 @@
             this.btnCerrar.Location = new System.Drawing.Point(135, 47);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(111, 30);
-            this.btnCerrar.TabIndex = 3;
+            this.btnCerrar.TabIndex = 24;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
@@ -397,7 +397,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(13, 47);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(111, 30);
-            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.TabIndex = 23;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
             // 
@@ -415,7 +415,7 @@
             this.btnActualizar.Location = new System.Drawing.Point(135, 10);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(111, 30);
-            this.btnActualizar.TabIndex = 1;
+            this.btnActualizar.TabIndex = 22;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click_1);
             // 
@@ -433,7 +433,7 @@
             this.btnRegistrar.Location = new System.Drawing.Point(12, 10);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(112, 30);
-            this.btnRegistrar.TabIndex = 0;
+            this.btnRegistrar.TabIndex = 21;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click_1);
             // 

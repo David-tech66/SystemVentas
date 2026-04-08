@@ -21,7 +21,7 @@ namespace CapaPresentacion
         // METODO PARA MOSTRAR LOS REGISTROS DE LA TABLA CLIENTE EN EL DATAGRIDVIEW
         private void MostrarCliente() 
         {
-            dataGridView1.DataSource = NCliente.MostrarCliente();
+            dtCliente.DataSource = NCliente.MostrarCliente();
         }
 
         // METODO PARA MOSTRAR LOS REGISTROS DE LA TABLA CATEGORIA EN EL DATAGRIDVIEW CUANDO SE CARGUE EL FORMULARIO
@@ -48,14 +48,17 @@ namespace CapaPresentacion
         // METODO PARA CAPTURAR LOS VALORES DE LAS CELDAS DEL DATAGRIDVIEW Y MOSTRARLOS EN LOS TEXTBOX CORRESPONDIENTES
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
-            // CAPTURAMOS EL VALOR DE LA COLUMNA EN UN TextBox LLAMADO txtID
-            txtID.Text = dataGridView1.CurrentRow.Cells["ID"].Value.ToString();
-            // CAPTURA EL VALOR DE LA COLUMNA (NOMBRE) EN UN TextBox LLAMADO txtNombre
-            txtNombre.Text = dataGridView1.CurrentRow.Cells["NOMBRE"].Value.ToString();
-            txtApellido.Text = dataGridView1.CurrentRow.Cells["APELLIDO"].Value.ToString();
-            txtCorreo.Text = dataGridView1.CurrentRow.Cells["CORREO"].Value.ToString();
-            txtDni.Text = dataGridView1.CurrentRow.Cells["DNI"].Value.ToString();
-            txtTelefono.Text = dataGridView1.CurrentRow.Cells["TELEFONO"].Value.ToString();
+            if (dtCliente.CurrentRow != null)
+            {
+                // CAPTURAMOS EL VALOR DE LA COLUMNA EN UN TextBox LLAMADO txtID
+                txtID.Text = dtCliente.CurrentRow.Cells["ID"].Value.ToString();
+                // CAPTURA EL VALOR DE LA COLUMNA (NOMBRE) EN UN TextBox LLAMADO txtNombre
+                txtNombre.Text = dtCliente.CurrentRow.Cells["NOMBRE"].Value.ToString();
+                txtApellido.Text = dtCliente.CurrentRow.Cells["APELLIDO"].Value.ToString();
+                txtCorreo.Text = dtCliente.CurrentRow.Cells["CORREO"].Value.ToString();
+                txtDni.Text = dtCliente.CurrentRow.Cells["DNI"].Value.ToString();
+                txtTelefono.Text = dtCliente.CurrentRow.Cells["TELEFONO"].Value.ToString();
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -99,6 +102,18 @@ namespace CapaPresentacion
 
         }
 
+        // METODO PARA LIMPIAR LOS CAMPOS DE TEXTO
+        private void Limpiar()
+        {
+            txtID.Clear();
+            txtNombre.Clear();
+            txtApellido.Clear();
+            txtCorreo.Clear();
+            txtDni.Clear();
+            txtTelefono.Clear();
+            txtNombre.Focus(); // COLOCAMOS EL FOCO EN EL CAMPO NOMBRE DESPUES DE LIMPIAR LOS CAMPOS DE TEXTO
+        }
+
         // BOTON REGISTRAR
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
@@ -107,17 +122,16 @@ namespace CapaPresentacion
                 string respuesta = "";
                 if (txtNombre.Text == "" || txtApellido.Text == "" || txtCorreo.Text == "" || txtDni.Text == "" || txtTelefono.Text == "")
                 {
-                    MessageBox.Show("Faltan ingresar algunos datos.",
-                        "Sistema de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Faltan ingresar algunos datos.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     respuesta = NCliente.InsertarCliente(txtNombre.Text, txtApellido.Text, txtCorreo.Text, txtDni.Text, txtTelefono.Text);
                     if (respuesta.Equals("OK"))
                     {
-                        MessageBox.Show("Se insertó de forma correcta el registro.",
-                            "Sistema de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Se insertó de forma correcta el registro.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MostrarCliente();
+                        this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO DESPUES DE REGISTRAR UN NUEVO PROVEEDOR
                     }
                     else
                     {
@@ -127,7 +141,8 @@ namespace CapaPresentacion
             }
             catch (Exception ex)
             {
-
+                // MOSTRAMOS EL MENSAJE DE ERROR EN CASO DE QUE OCURRA UNA EXCEPCION
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -139,8 +154,7 @@ namespace CapaPresentacion
                 string respuesta = "";
                 if (txtID.Text == "")
                 {
-                    MessageBox.Show("No se ha seleccionado ningun registro.",
-                        "Sistema de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se ha seleccionado ningun registro.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -148,9 +162,9 @@ namespace CapaPresentacion
 
                     if (respuesta.Equals("OK"))
                     {
-                        MessageBox.Show("Los datos se actualizaron correctamente.",
-                            "Sistema de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Los datos se actualizaron correctamente.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MostrarCliente();
+                        this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO DESPUES DE REGISTRAR UN NUEVO PROVEEDOR
                     }
                     else
                     {
@@ -171,15 +185,13 @@ namespace CapaPresentacion
             {
                 if (txtID.Text == "")
                 {
-                    MessageBox.Show("No se ha seleccionado ningún registro.",
-                        "Sistema de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se ha seleccionado ningún registro.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 else
                 {
                     DialogResult Opcion1;
-                    Opcion1 = MessageBox.Show("¿Realmente desea eliminar el registro?", "Sistema de Ventas",
-                        MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    Opcion1 = MessageBox.Show("¿Realmente desea eliminar el registro?", "TechSolution", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                     if (Opcion1 == DialogResult.OK)
                     {
@@ -187,9 +199,9 @@ namespace CapaPresentacion
                         respuesta = NCliente.EliminarCliente(Convert.ToInt32(txtID.Text));
                         if (respuesta.Equals("OK"))
                         {
-                            MessageBox.Show("El registro se eliminó correctamente.",
-                                "Sistema de Ventas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("El registro se eliminó correctamente.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             MostrarCliente();
+                            this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO DESPUES DE REGISTRAR UN NUEVO PROVEEDOR
                         }
                     }
                 }
@@ -209,12 +221,17 @@ namespace CapaPresentacion
         // METODO PARA BUSCAR REGISTROS EN LA TABLA CLIENTE
         private void BuscarCliente()
         {
-            dataGridView1.DataSource = NCliente.BuscarCliente(txtBuscar.Text);
+            dtCliente.DataSource = NCliente.BuscarCliente(txtBuscar.Text);
         }
         // LLAMAMOS AL METODO BUSCAR CLIENTE
         private void txtBuscar_TextChanged_1(object sender, EventArgs e)
         {
             BuscarCliente();
+        }
+
+        private void guna2ShadowPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

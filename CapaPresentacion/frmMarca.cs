@@ -25,6 +25,11 @@ namespace CapaPresentacion
         }
 
         // METODO PARA MOSTRAR LOS REGISTROS DE LA TABLA MARCA EN EL DATAGRIDVIEW CUANDO SE CARGUE EL FORMULARIO
+        private void frmMarca_Load_1(object sender, EventArgs e)
+        {
+            MostrarMarca();
+        }
+
         private void frmMarca_Load(object sender, EventArgs e)
         {
             
@@ -72,6 +77,16 @@ namespace CapaPresentacion
 
         }
 
+        // METODO PARA LIMPIAR LOS CAMPOS DE TEXTO
+        private void Limpiar()
+        {
+            txtID.Clear();
+            txtNombre.Clear();
+            txtDescripcion.Clear();
+            combEstado.Text = "";
+            dtFechaRegistro.Text = "";
+        }
+
         // BOTON REGISTRAR
         private void btnRegistrar_Click_1(object sender, EventArgs e)
         {
@@ -92,6 +107,7 @@ namespace CapaPresentacion
                         MessageBox.Show("Se insertó de forma correcta el registro.",
                             "db_SistemaVenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MostrarMarca();
+                        this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO
                     }
                     else
                     {
@@ -190,11 +206,6 @@ namespace CapaPresentacion
         private void txtBuscar_TextChanged_1(object sender, EventArgs e)
         {
             BuscarMarca();
-        }
-
-        private void frmMarca_Load_1(object sender, EventArgs e)
-        {
-            MostrarMarca();
         }
     }
 }

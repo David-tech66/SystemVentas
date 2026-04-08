@@ -71,6 +71,7 @@
             this.dtMarca.Name = "dtMarca";
             this.dtMarca.ReadOnly = true;
             this.dtMarca.RowHeadersVisible = false;
+            this.dtMarca.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtMarca.Size = new System.Drawing.Size(451, 370);
             this.dtMarca.TabIndex = 14;
             this.dtMarca.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
