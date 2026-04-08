@@ -21,13 +21,13 @@ namespace CapaPresentacion
         // METODO PARA MOSTRAR LOS REGISTROS DE LA TABLA MARCA EN EL DATAGRIDVIEW
         private void MostrarMarca()
         {
-            dataGridView1.DataSource = NMarca.MostrarMarca();
+            dtMarca.DataSource = NMarca.MostrarMarca();
         }
 
         // METODO PARA MOSTRAR LOS REGISTROS DE LA TABLA MARCA EN EL DATAGRIDVIEW CUANDO SE CARGUE EL FORMULARIO
         private void frmMarca_Load(object sender, EventArgs e)
         {
-            MostrarMarca();
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -49,12 +49,12 @@ namespace CapaPresentacion
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             // CAPTURAMOS EL VALOR DE LA COLUMNA EN UN TextBox LLAMADO txtID
-            txtID.Text = dataGridView1.CurrentRow.Cells["ID"].Value.ToString();
+            txtID.Text = dtMarca.CurrentRow.Cells["ID"].Value.ToString();
             // CAPTURA EL VALOR DE LA COLUMNA (NOMBRE) EN UN TextBox LLAMADO txtNombre
-            txtNombre.Text = dataGridView1.CurrentRow.Cells["MARCA"].Value.ToString();
-            txtDescripcion.Text = dataGridView1.CurrentRow.Cells["DESCRIPCION"].Value.ToString();
-            combEstado.Text = dataGridView1.CurrentRow.Cells["ESTADO"].Value.ToString();
-            dtFechaRegistro.Text = dataGridView1.CurrentRow.Cells["FECHA_REGISTRO"].Value.ToString();
+            txtNombre.Text = dtMarca.CurrentRow.Cells["MARCA"].Value.ToString();
+            txtDescripcion.Text = dtMarca.CurrentRow.Cells["DESCRIPCION"].Value.ToString();
+            combEstado.Text = dtMarca.CurrentRow.Cells["ESTADO"].Value.ToString();
+            dtFechaRegistro.Text = dtMarca.CurrentRow.Cells["FECHA_REGISTRO"].Value.ToString();
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
@@ -184,12 +184,17 @@ namespace CapaPresentacion
         // METODO PARA BUSCAR REGISTROS EN LA TABLA MARCA
         private void BuscarMarca()
         {
-            dataGridView1.DataSource = NMarca.BuscarMarca(txtBuscar.Text);
+            dtMarca.DataSource = NMarca.BuscarMarca(txtBuscar.Text);
         }
         // LLAMAMOS AL METODO BUSCAR MARCA
         private void txtBuscar_TextChanged_1(object sender, EventArgs e)
         {
             BuscarMarca();
+        }
+
+        private void frmMarca_Load_1(object sender, EventArgs e)
+        {
+            MostrarMarca();
         }
     }
 }

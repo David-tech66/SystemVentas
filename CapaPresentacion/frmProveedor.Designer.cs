@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.combEstado = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtTelefono = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtRuc = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtCorreo = new Guna.UI2.WinForms.Guna2TextBox();
@@ -47,17 +49,15 @@
             this.btnEliminar = new Guna.UI2.WinForms.Guna2Button();
             this.btnActualizar = new Guna.UI2.WinForms.Guna2Button();
             this.btnRegistrar = new Guna.UI2.WinForms.Guna2Button();
-            this.combEstado = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.guna2ShadowPanel3 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.dtProveedor = new System.Windows.Forms.DataGridView();
             this.txtBuscar = new Guna.UI2.WinForms.Guna2TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.guna2ShadowPanel1.SuspendLayout();
             this.guna2ShadowPanel2.SuspendLayout();
             this.guna2ShadowPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtProveedor)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -113,6 +113,40 @@
             this.guna2ShadowPanel1.Size = new System.Drawing.Size(260, 356);
             this.guna2ShadowPanel1.TabIndex = 31;
             // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
+            this.label4.Location = new System.Drawing.Point(21, 294);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 17);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "Estado";
+            // 
+            // combEstado
+            // 
+            this.combEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.combEstado.BackColor = System.Drawing.Color.Transparent;
+            this.combEstado.BorderRadius = 8;
+            this.combEstado.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.combEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combEstado.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.combEstado.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.combEstado.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.combEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
+            this.combEstado.ItemHeight = 30;
+            this.combEstado.Items.AddRange(new object[] {
+            "ACTIVO",
+            "INACTIVO"});
+            this.combEstado.Location = new System.Drawing.Point(21, 311);
+            this.combEstado.Name = "combEstado";
+            this.combEstado.Size = new System.Drawing.Size(216, 36);
+            this.combEstado.TabIndex = 34;
+            this.combEstado.SelectedIndexChanged += new System.EventHandler(this.combEstado_SelectedIndexChanged);
+            // 
             // txtTelefono
             // 
             this.txtTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -128,7 +162,7 @@
             this.txtTelefono.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this.txtTelefono.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTelefono.Location = new System.Drawing.Point(21, 268);
+            this.txtTelefono.Location = new System.Drawing.Point(21, 224);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.PlaceholderText = "";
             this.txtTelefono.SelectedText = "";
@@ -151,7 +185,7 @@
             this.txtRuc.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtRuc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this.txtRuc.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtRuc.Location = new System.Drawing.Point(21, 228);
+            this.txtRuc.Location = new System.Drawing.Point(21, 265);
             this.txtRuc.Name = "txtRuc";
             this.txtRuc.PlaceholderText = "";
             this.txtRuc.SelectedText = "";
@@ -188,7 +222,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
-            this.label11.Location = new System.Drawing.Point(21, 252);
+            this.label11.Location = new System.Drawing.Point(21, 208);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 17);
             this.label11.TabIndex = 18;
@@ -247,7 +281,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
-            this.label12.Location = new System.Drawing.Point(21, 211);
+            this.label12.Location = new System.Drawing.Point(21, 248);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(39, 17);
             this.label12.TabIndex = 17;
@@ -403,46 +437,12 @@
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click_1);
             // 
-            // combEstado
-            // 
-            this.combEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.combEstado.BackColor = System.Drawing.Color.Transparent;
-            this.combEstado.BorderRadius = 8;
-            this.combEstado.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.combEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.combEstado.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.combEstado.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.combEstado.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.combEstado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
-            this.combEstado.ItemHeight = 30;
-            this.combEstado.Items.AddRange(new object[] {
-            "ACTIVO",
-            "INACTIVO"});
-            this.combEstado.Location = new System.Drawing.Point(21, 311);
-            this.combEstado.Name = "combEstado";
-            this.combEstado.Size = new System.Drawing.Size(216, 36);
-            this.combEstado.TabIndex = 34;
-            this.combEstado.SelectedIndexChanged += new System.EventHandler(this.combEstado_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
-            this.label4.Location = new System.Drawing.Point(21, 294);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 17);
-            this.label4.TabIndex = 33;
-            this.label4.Text = "Estado";
-            // 
             // guna2ShadowPanel3
             // 
             this.guna2ShadowPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2ShadowPanel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2ShadowPanel3.Controls.Add(this.dataGridView1);
+            this.guna2ShadowPanel3.Controls.Add(this.dtProveedor);
             this.guna2ShadowPanel3.Controls.Add(this.txtBuscar);
             this.guna2ShadowPanel3.Controls.Add(this.label2);
             this.guna2ShadowPanel3.Controls.Add(this.label3);
@@ -453,6 +453,27 @@
             this.guna2ShadowPanel3.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel3.Size = new System.Drawing.Size(463, 449);
             this.guna2ShadowPanel3.TabIndex = 33;
+            // 
+            // dtProveedor
+            // 
+            this.dtProveedor.AllowUserToAddRows = false;
+            this.dtProveedor.AllowUserToDeleteRows = false;
+            this.dtProveedor.AllowUserToOrderColumns = true;
+            this.dtProveedor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtProveedor.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtProveedor.BackgroundColor = System.Drawing.Color.White;
+            this.dtProveedor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dtProveedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtProveedor.Location = new System.Drawing.Point(6, 67);
+            this.dtProveedor.Name = "dtProveedor";
+            this.dtProveedor.ReadOnly = true;
+            this.dtProveedor.RowHeadersVisible = false;
+            this.dtProveedor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtProveedor.Size = new System.Drawing.Size(451, 369);
+            this.dtProveedor.TabIndex = 15;
+            this.dtProveedor.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            this.dtProveedor.DoubleClick += new System.EventHandler(this.dtProveedor_DoubleClick);
             // 
             // txtBuscar
             // 
@@ -499,25 +520,6 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "Buscar Proveedor:";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 67);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(451, 369);
-            this.dataGridView1.TabIndex = 15;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
-            // 
             // frmProveedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -538,7 +540,7 @@
             this.guna2ShadowPanel2.ResumeLayout(false);
             this.guna2ShadowPanel3.ResumeLayout(false);
             this.guna2ShadowPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtProveedor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -570,6 +572,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtBuscar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtProveedor;
     }
 }

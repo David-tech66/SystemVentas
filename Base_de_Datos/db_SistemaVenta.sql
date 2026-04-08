@@ -113,8 +113,7 @@ id_venta			INT,
 id_producto1		INT,
 fecha_detalle		DATETIME NOT NULL,
 cantidad_unitaria	INT NOT NULL,
-subtotal_venta		DECIMAL(18,2) NOT NULL,
-vuelto				DECIMAL(18,0) NOT NULL
+subtotal_venta		DECIMAL(18,2) NOT NULL
 constraint fk_fventa foreign key(id_venta) references tblVenta(id_venta),
 constraint fk_fproducto1 foreign key(id_producto1) references tblProducto(id_producto)
 )

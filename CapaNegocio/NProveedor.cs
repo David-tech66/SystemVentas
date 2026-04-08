@@ -38,6 +38,7 @@ namespace CapaNegocio
             Obj.Nombre_prov  = nombre_prov;
             Obj.Dire_prov    = dire_prov;
             Obj.Correo_prov  = correo_prov;
+            Obj.Ruc          = ruc;
             Obj.Telf_prov    = telf_prov;
             Obj.Estado_prov  = estado_prov;
 
