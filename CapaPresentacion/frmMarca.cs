@@ -83,7 +83,7 @@ namespace CapaPresentacion
             txtID.Clear();
             txtNombre.Clear();
             txtDescripcion.Clear();
-            combEstado.Text = "";
+            combEstado.SelectedIndex = -1;
             dtFechaRegistro.Text = "";
         }
 
@@ -95,17 +95,14 @@ namespace CapaPresentacion
                 string respuesta = "";
                 if (txtNombre.Text == "" || txtDescripcion.Text == "" || combEstado.Text == "" || dtFechaRegistro.Text == "")
                 {
-                    MessageBox.Show("Faltan ingresar algunos datos.",
-                        "db_SistemaVenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Faltan ingresar algunos datos.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    respuesta = NMarca.InsertarMarca(txtNombre.Text, txtDescripcion.Text,
-                        combEstado.Text, dtFechaRegistro.Value);
+                    respuesta = NMarca.InsertarMarca(txtNombre.Text, txtDescripcion.Text, combEstado.Text, dtFechaRegistro.Value);
                     if (respuesta.Equals("OK"))
                     {
-                        MessageBox.Show("Se insertó de forma correcta el registro.",
-                            "db_SistemaVenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Se insertó de forma correcta el registro.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MostrarMarca();
                         this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO
                     }
@@ -129,19 +126,17 @@ namespace CapaPresentacion
                 string respuesta = "";
                 if (txtID.Text == "")
                 {
-                    MessageBox.Show("No se ha seleccionado ningun registro.",
-                        "db_SistemaVenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se ha seleccionado ningun registro.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    respuesta = NMarca.ActualizarMarca(Convert.ToInt32(txtID.Text), txtNombre.Text, txtDescripcion.Text,
-                        combEstado.Text, dtFechaRegistro.Value);
+                    respuesta = NMarca.ActualizarMarca(Convert.ToInt32(txtID.Text), txtNombre.Text, txtDescripcion.Text, combEstado.Text, dtFechaRegistro.Value);
 
                     if (respuesta.Equals("OK"))
                     {
-                        MessageBox.Show("Los datos se actualizaron correctamente.",
-                            "db_SistemaVenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Los datos se actualizaron correctamente.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MostrarMarca();
+                        this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO DESPUES DE ACTUALIZAR LOS DATOS
                     }
                     else
                     {
@@ -162,15 +157,13 @@ namespace CapaPresentacion
             {
                 if (txtID.Text == "")
                 {
-                    MessageBox.Show("No se ha seleccionado ningún registro.",
-                        "db_SistemaVenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se ha seleccionado ningún registro.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 else
                 {
                     DialogResult Opcion1;
-                    Opcion1 = MessageBox.Show("¿Realmente desea eliminar el registro?", "db_SistemaVenta",
-                        MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    Opcion1 = MessageBox.Show("¿Realmente desea eliminar el registro?", "TechSolution", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                     if (Opcion1 == DialogResult.OK)
                     {
@@ -178,9 +171,9 @@ namespace CapaPresentacion
                         respuesta = NMarca.EliminarMarca(Convert.ToInt32(txtID.Text));
                         if (respuesta.Equals("OK"))
                         {
-                            MessageBox.Show("El registro se eliminó correctamente.",
-                                "db_SistemaVenta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("El registro se eliminó correctamente.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             MostrarMarca();
+                            this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO DESPUES DE ELIMINAR EL REGISTRO
                         }
                     }
                 }
@@ -206,6 +199,21 @@ namespace CapaPresentacion
         private void txtBuscar_TextChanged_1(object sender, EventArgs e)
         {
             BuscarMarca();
+        }
+
+        // METODO PARA CAPTURAR LOS VALORES DE LAS CELDAS DEL DATAGRIDVIEW Y MOSTRARLOS EN LOS TEXTBOX CORRESPONDIENTES
+        private void dtMarca_DoubleClick(object sender, EventArgs e)
+        {
+            if (dtMarca.CurrentRow != null) 
+            {
+                // CAPTURAMOS EL VALOR DE LA COLUMNA EN UN TextBox LLAMADO txtID
+                txtID.Text = dtMarca.CurrentRow.Cells["ID"].Value.ToString();
+                // CAPTURA EL VALOR DE LA COLUMNA (NOMBRE) EN UN TextBox LLAMADO txtNombre
+                txtNombre.Text = dtMarca.CurrentRow.Cells["MARCA"].Value.ToString();
+                txtDescripcion.Text = dtMarca.CurrentRow.Cells["DESCRIPCION"].Value.ToString();
+                combEstado.Text = dtMarca.CurrentRow.Cells["ESTADO"].Value.ToString();
+                dtFechaRegistro.Text = dtMarca.CurrentRow.Cells["FECHA_REGISTRO"].Value.ToString();
+            }
         }
     }
 }

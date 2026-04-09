@@ -75,6 +75,7 @@
             this.dtMarca.Size = new System.Drawing.Size(451, 370);
             this.dtMarca.TabIndex = 14;
             this.dtMarca.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            this.dtMarca.DoubleClick += new System.EventHandler(this.dtMarca_DoubleClick);
             // 
             // guna2ShadowPanel2
             // 
@@ -232,7 +233,7 @@
             this.combEstado.ItemHeight = 30;
             this.combEstado.Items.AddRange(new object[] {
             "ACTIVO",
-            "AGOTADO"});
+            "INACTIVO"});
             this.combEstado.Location = new System.Drawing.Point(24, 306);
             this.combEstado.Name = "combEstado";
             this.combEstado.Size = new System.Drawing.Size(100, 36);

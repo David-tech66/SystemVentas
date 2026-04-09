@@ -57,13 +57,5 @@ namespace CapaNegocio
             Obj.Textobuscar = buscar;
             return Obj.BuscarCategoria(Obj);
         }
-
-        // 6. METODO MOSTRAR PRODUCTO CLIENTE
-        public static DataTable MostrarProductosCliente(string textobuscar)
-        {
-            DCategoria Obj = new DCategoria();
-            Obj.Textobuscar = textobuscar;
-            return new DCategoria().MostrarProductosCliente(Obj);
-        }
     }
 }

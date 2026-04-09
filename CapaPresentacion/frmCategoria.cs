@@ -137,6 +137,16 @@ namespace CapaPresentacion
 
         }
 
+        // METODO PARA LIMPIAR LOS CAMPOS DE TEXTO
+        private void Limpiar()
+        {
+            txtID.Clear();
+            txtNombre.Clear();
+            txtDescripcion.Clear();
+            combEstado.SelectedIndex = -1;
+            dtFecha.Value = DateTime.Now;
+        }
+
         // BOTON ELIMINAR
         private void guna2Button1_Click(object sender, EventArgs e)
         {
@@ -144,14 +154,12 @@ namespace CapaPresentacion
             {
                 if (txtID.Text == "")
                 {
-                    MessageBox.Show("No se ha seleccionado ningún registro.",
-                        "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se ha seleccionado ningún registro.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     DialogResult Opcion1;
-                    Opcion1 = MessageBox.Show("¿Realmente desea eliminar el registro?", "TechSolution",
-                        MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    Opcion1 = MessageBox.Show("¿Realmente desea eliminar el registro?", "TechSolution", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                     if (Opcion1 == DialogResult.OK)
                     {
@@ -159,9 +167,9 @@ namespace CapaPresentacion
                         respuesta = NCategoria.EliminarCategoria(Convert.ToInt32(txtID.Text));
                         if (respuesta.Equals("OK"))
                         {
-                            MessageBox.Show("El registro se eliminó correctamente.",
-                                "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("El registro se eliminó correctamente.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             MostrarCategoria();
+                            this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO
                         }
                     }
                 }
@@ -180,8 +188,7 @@ namespace CapaPresentacion
                 string respuesta = "";
                 if (txtID.Text == "")
                 {
-                    MessageBox.Show("No se ha seleccionado ningun registro.",
-                        "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se ha seleccionado ningun registro.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -189,9 +196,9 @@ namespace CapaPresentacion
 
                     if (respuesta.Equals("OK"))
                     {
-                        MessageBox.Show("Los datos se actualizaron correctamente.",
-                            "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Los datos se actualizaron correctamente.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MostrarCategoria();
+                        this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO
                     }
                     else
                     {
@@ -213,18 +220,16 @@ namespace CapaPresentacion
                 string respuesta = "";
                 if (txtNombre.Text == "" || txtDescripcion.Text == "" || combEstado.Text == "" || dtFecha.Text == "")
                 {
-                    MessageBox.Show("Faltan ingresar algunos datos.",
-                        "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Faltan ingresar algunos datos.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    respuesta = NCategoria.InsertarCategoria(txtNombre.Text, txtDescripcion.Text,
-                        combEstado.Text, dtFecha.Value);
+                    respuesta = NCategoria.InsertarCategoria(txtNombre.Text, txtDescripcion.Text, combEstado.Text, dtFecha.Value);
                     if (respuesta.Equals("OK"))
                     {
-                        MessageBox.Show("Se insertó de forma correcta el registro.",
-                            "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Se insertó de forma correcta el registro.", "TechSolution", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         MostrarCategoria();
+                        this.Limpiar(); // LLAMAMOS AL METODO LIMPIAR PARA LIMPIAR LOS CAMPOS DE TEXTO
                     }
                     else
                     {

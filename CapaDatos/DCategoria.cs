@@ -47,11 +47,15 @@ namespace CapaDatos
         // 1. METODO PARA MOSTRAR DATOS DE UNA TABLA EN UN DATAGRIDVIEW
         public DataTable MostrarCategoria()
         {
+            // CREAR UNA TABLA PARA ALMACENAR LOS DATOS DE LA BD
             DataTable tabla = new DataTable();
+            // CREAR UNA CONEXION A LA BD
             SqlConnection SqlCon = new SqlConnection(Conexion.cadena);
+            // ABRIR LA CONEXION Y EJECUTAR EL COMANDO PARA MOSTRAR LOS DATOS DE LA BD
             try
             {
                 SqlCon.Open();
+                // CREAR UN COMANDO PARA EJECUTAR EL STOREDPROCEDURE QUE MUESTRA LOS DATOS DE LA BD
                 SqlCommand SqlCmd = new SqlCommand("spmostrar_categoria", SqlCon);  // CONTIENE 2 PARAMETROS
                 SqlCmd.CommandType = CommandType.StoredProcedure;    // NOMBRE DE STOREPROCEDURE Y LA CADENA CONEXION
                 SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);  // EJECUTA COMANDO
@@ -157,31 +161,6 @@ namespace CapaDatos
                 SqlCmd.Parameters.AddWithValue("@textobuscar", Categoria.Textobuscar);  // PARÁMETRO 1
                 SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd);  // EJECUTA COMANDO
                 SqlDat.Fill(tabla);  // LLENAR LOS DATOS DE LA BD
-            }
-            catch (Exception ex)
-            {
-                tabla = null;
-            }
-            finally
-            {
-                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
-            }
-            return tabla;
-        }
-
-        // 6. METODO MOSTRAR PRODUCTOS CLIENTE
-        public DataTable MostrarProductosCliente(DCategoria Categoria)
-        {
-            DataTable tabla = new DataTable();
-            SqlConnection SqlCon = new SqlConnection(Conexion.cadena);
-            try
-            {
-                SqlCon.Open();
-                SqlCommand SqlCmd = new SqlCommand("spmostrar_productos_cliente", SqlCon);   // 2 PAÁMETROS: NOMBRE DEL STOREDPROCEDURE Y LA CADENA DE CONEXIÓN
-                SqlCmd.CommandType = CommandType.StoredProcedure;   // PROCEDIMIENTO ALMACENADO
-                SqlCmd.Parameters.AddWithValue("@textobuscar", Categoria.Textobuscar);
-                SqlDataAdapter SqlDat = new SqlDataAdapter(SqlCmd); // EJECUTA EL COMANDO
-                SqlDat.Fill(tabla);  // LLENA LOS DATOS DE LA BD
             }
             catch (Exception ex)
             {
